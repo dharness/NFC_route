@@ -43,9 +43,35 @@ myapp.controller('userpageController', function($scope, $location) {
         $location.path("/login");
     }
 
-    $('#form').html(); = '<button>LOL</button>';
+    $scope.newForm = function() {
 
-    console.log('hur');
+        $('#form').html(strVar);
+        $("#form").animate({
+            opacity: 1, // Will fade the object in
+            fontSize: "14px", // Will animate the font size too
+        }, 6000);
+
+        console.log('hur: ' + strVar);
+    }
+
+    //add a new tag pointer to the user account with parse
+    $scope.addTag = function() {
+
+        var user = Parse.User.current();
+
+        // user.set('tag1', $('tag1').val());
+        // user.set('tag2', $('tag2').val());
+        // user.set('tag3', $('tag3').val());
+        // user.set('tag4', $('tag4').val());
+
+        user.set('tag1', 'https://www.facebook.com/messages/naila.nur');
+        user.set('tag2', 'tag2');
+        user.set('tag3', 'tag3');
+        user.set('tag4', 'tag4');
+
+        user.save();
+        alert('tag a');
+    }
 
 });
 
@@ -135,5 +161,9 @@ var visualNav = function() {
 
 
 
-
-//4scrull
+var strVar = "";
+strVar += "<center><form>";
+strVar += "<input id=\"tagName\"> <br>";
+strVar += "<input id=\"url\">";
+strVar += "<\/form>";
+strVar += "<\/center>";
